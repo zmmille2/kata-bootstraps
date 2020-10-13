@@ -1,21 +1,13 @@
-import { RemoteLogger } from './RemoteLogger'
+import { RemoteLogger } from "./remoteLogger";
 
-class HelloWorld {
-  public dependency: RemoteLogger
+export class HelloWorld {
+  public dependency: RemoteLogger;
 
   constructor(dependency: RemoteLogger) {
-    this.dependency = dependency
+    this.dependency = dependency;
   }
 
-  public Say(message: string): void {
-    this.dependency.Log(message)
+  public async say(message: string): Promise<void> {
+    return this.dependency.log(message);
   }
-
-  public async SayAsync(message: string): Promise<void> {
-    return this.dependency.Log(message)
-  }
-}
-
-export {
-  HelloWorld
 }
