@@ -1,7 +1,3 @@
-abstract class RemoteLogger {
-  public abstract Log(message: string): Promise<void>
-}
-
-export {
-  RemoteLogger
+export abstract class RemoteLogger {
+  public abstract log(message: string): Promise<void>;
 }
