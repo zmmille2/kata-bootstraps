@@ -1,13 +1,41 @@
+import * as config from "config";
+import { ConfigConstants } from "../constants/configConstants";
+
+interface FizzBuzzReplacement {
+  key: number;
+  value: string;
+}
 export class FizzBuzzService {
-  public static execute(n: number): string {
+  private replacements: FizzBuzzReplacement[];
+
+  constructor() {
+    const replacements: { [n: string]: string } = config.get(
+      ConfigConstants.fizzBuzzReplacements
+    );
+    this.replacements = Object.keys(replacements)
+      .map((key) => {
+        const r: FizzBuzzReplacement = {
+          key: parseInt(key),
+          value: replacements[key],
+        };
+        return r;
+      })
+      .sort((a, b) => (a.key > b.key ? 1 : -1));
+  }
+
+  public execute(n: number): string {
+    if (n == 0) {
+      return n.toString();
+    }
     let result = "";
-    if (n % 3 == 0) {
-      result += "Fizz";
+
+    for (const replacement of this.replacements) {
+      const { key, value } = replacement;
+      if (n % key == 0) {
+        result += value;
+      }
     }
-    if (n % 5 == 0) {
-      result += "Buzz";
-    }
-    if (result == "" || n == 0) {
+    if (result == "") {
       return n.toString();
     }
     return result;
