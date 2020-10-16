@@ -7,17 +7,17 @@ interface FizzBuzzReplacement {
   value: string;
 }
 
+/**
+ * Service for adding keywords for numbers that are multiples
+ * of configured values
+ */
 export class FizzBuzzService {
   private replacements: FizzBuzzReplacement[];
   private logger: Logger;
 
-  constructor(logger: Logger) {
+  constructor(replacements: { [n: string]: string }, logger: Logger) {
     this.logger = logger;
     logger.debug("Initializing FizzBuzzService");
-
-    const replacements: { [n: string]: string } = config.get(
-      ConfigConstants.fizzBuzzReplacements
-    );
 
     logger.debug(
       `Parsing and sorting replacements: ${JSON.stringify(
@@ -40,6 +40,19 @@ export class FizzBuzzService {
     logger.debug("FizzBuzzService initialized");
   }
 
+  /**
+   * As configured, will add the following replacements if the number is
+   * a multiple of the specified key:
+   * 
+   * 3 - Fizz
+   * 5 - Buzz
+   * 7 - Bang
+   * 
+   * @param {number} n Number for which to determine output.
+   * @returns {string} Replacement value if number is a multiple of one
+   * of the specified inputs. Stringified number if it is not a multiple
+   * of any keys
+   */
   public execute(n: number): string {
     this.logger.debug(`Input: ${n}`);
     if (n == 0) {

@@ -1,7 +1,10 @@
 import { FizzBuzzService } from "./fizzBuzz";
+import * as config from "config";
+import { ConfigConstants } from "../constants/configConstants";
 
 describe("FizzBuzzBang", () => {
-  const service = new FizzBuzzService(console);
+  const replacements: { [n: string]: string } = config.get(ConfigConstants.fizzBuzzReplacements);
+  const service = new FizzBuzzService(replacements, console);
 
   describe("Fizz", () => {
     it("output contains Fizz for all positive numbers divisible by 3", () => {
