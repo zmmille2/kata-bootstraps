@@ -1,11 +1,5 @@
-import * as config from "config";
-import { ConfigConstants } from "../constants/configConstants";
 import { Logger } from "../shared/logger";
-
-interface FizzBuzzReplacement {
-  key: number;
-  value: string;
-}
+import { FizzBuzzReplacement } from "./models/replacement";
 
 /**
  * Service for adding keywords for numbers that are multiples
@@ -43,11 +37,11 @@ export class FizzBuzzService {
   /**
    * As configured, will add the following replacements if the number is
    * a multiple of the specified key:
-   * 
+   *
    * 3 - Fizz
    * 5 - Buzz
    * 7 - Bang
-   * 
+   *
    * @param {number} n Number for which to determine output.
    * @returns {string} Replacement value if number is a multiple of one
    * of the specified inputs. Stringified number if it is not a multiple

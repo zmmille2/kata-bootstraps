@@ -3,7 +3,9 @@ import * as config from "config";
 import { ConfigConstants } from "../constants/configConstants";
 
 describe("FizzBuzzBang", () => {
-  const replacements: { [n: string]: string } = config.get(ConfigConstants.fizzBuzzReplacements);
+  const replacements: { [n: string]: string } = config.get(
+    ConfigConstants.fizzBuzzReplacements
+  );
   const service = new FizzBuzzService(replacements, console);
 
   describe("Fizz", () => {
