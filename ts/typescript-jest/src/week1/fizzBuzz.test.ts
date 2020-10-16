@@ -1,12 +1,73 @@
 import { FizzBuzzService } from "./fizzBuzz";
 import * as config from "config";
 import { ConfigConstants } from "../constants/configConstants";
+import { Logger } from "../shared/logger";
 
 describe("FizzBuzzBang", () => {
   const replacements: { [n: string]: string } = config.get(
     ConfigConstants.fizzBuzzReplacements
   );
-  const service = new FizzBuzzService(replacements, console);
+  const jestLogger: Logger = {
+    debug: jest.fn(),
+    info: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn(),
+  };
+  const service = new FizzBuzzService(replacements, jestLogger);
+
+  it("answers correctly for 100000 random postitive integers", () => {
+    for (let i = 0; i < 100000; i++) {
+      const random = Math.floor(Math.random() * 100000);
+      const mod3 = random % 3 == 0;
+      const mod5 = random % 5 == 0;
+      const mod7 = random % 7 == 0;
+      const output = service.execute(random);
+      if (mod3 && !mod5 && !mod7) {
+        expect(output).toEqual("Fizz");
+      } else if (!mod3 && mod5 && !mod7) {
+        expect(output).toEqual("Buzz");
+      } else if (!mod3 && !mod5 && mod7) {
+        expect(output).toEqual("Bang");
+      } else if (mod3 && mod5 && !mod7) {
+        expect(output).toEqual("FizzBuzz");
+      } else if (mod3 && !mod5 && mod7) {
+        expect(output).toEqual("FizzBang");
+      } else if (!mod3 && mod5 && mod7) {
+        expect(output).toEqual("BuzzBang");
+      } else if (mod3 && mod5 && mod7) {
+        expect(output).toEqual("FizzBuzzBang");
+      } else {
+        expect(output).toEqual(random.toString());
+      }
+    }
+  });
+
+  it("answers correctly for 100000 random negative integers", () => {
+    for (let i = 0; i < 100000; i++) {
+      const random = -Math.floor(Math.random() * 100000);
+      const mod3 = random % 3 == 0;
+      const mod5 = random % 5 == 0;
+      const mod7 = random % 7 == 0;
+      const output = service.execute(random);
+      if (mod3 && !mod5 && !mod7) {
+        expect(output).toEqual("Fizz");
+      } else if (!mod3 && mod5 && !mod7) {
+        expect(output).toEqual("Buzz");
+      } else if (!mod3 && !mod5 && mod7) {
+        expect(output).toEqual("Bang");
+      } else if (mod3 && mod5 && !mod7) {
+        expect(output).toEqual("FizzBuzz");
+      } else if (mod3 && !mod5 && mod7) {
+        expect(output).toEqual("FizzBang");
+      } else if (!mod3 && mod5 && mod7) {
+        expect(output).toEqual("BuzzBang");
+      } else if (mod3 && mod5 && mod7) {
+        expect(output).toEqual("FizzBuzzBang");
+      } else {
+        expect(output).toEqual(random.toString());
+      }
+    }
+  });
 
   describe("Fizz", () => {
     it("output contains Fizz for all positive numbers divisible by 3", () => {
@@ -111,32 +172,5 @@ describe("FizzBuzzBang", () => {
       expect(service.execute(2)).toEqual("2");
       expect(service.execute(8)).toEqual("8");
     });
-  });
-
-  it("answers correctly for 100000 random integers", () => {
-    for (let i = 0; i < 10000; i++) {
-      const random = Math.floor(Math.random() * 100000);
-      const mod3 = random % 3 == 0;
-      const mod5 = random % 5 == 0;
-      const mod7 = random % 7 == 0;
-      const output = service.execute(random);
-      if (mod3 && !mod5 && !mod7) {
-        expect(output).toEqual("Fizz");
-      } else if (!mod3 && mod5 && !mod7) {
-        expect(output).toEqual("Buzz");
-      } else if (!mod3 && !mod5 && mod7) {
-        expect(output).toEqual("Bang");
-      } else if (mod3 && mod5 && !mod7) {
-        expect(output).toEqual("FizzBuzz");
-      } else if (mod3 && !mod5 && mod7) {
-        expect(output).toEqual("FizzBang");
-      } else if (!mod3 && mod5 && mod7) {
-        expect(output).toEqual("BuzzBang");
-      } else if (mod3 && mod5 && mod7) {
-        expect(output).toEqual("FizzBuzzBang");
-      } else {
-        expect(output).toEqual(random.toString());
-      }
-    }
   });
 });
