@@ -1,7 +1,7 @@
 import { FizzBuzzService } from "./fizzBuzz";
 
 describe("FizzBuzzBang", () => {
-  const service = new FizzBuzzService();
+  const service = new FizzBuzzService(console);
 
   describe("Fizz", () => {
     it("output contains Fizz for all positive numbers divisible by 3", () => {
