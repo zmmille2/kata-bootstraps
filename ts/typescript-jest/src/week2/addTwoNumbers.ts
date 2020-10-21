@@ -2,9 +2,10 @@ import { ListNode } from "./models/listNode";
 
 /**
  * add two numbers
- * @param n1 node 1
- * @param n2 node 2
- * @returns result
+ *
+ * @param {ListNode} n1 node 1
+ * @param {ListNode} n2 node 2
+ * @returns {ListNode} result
  */
 export function addTwoNumbers(n1: ListNode, n2: ListNode): ListNode {
   let sum1 = 0;
@@ -27,7 +28,7 @@ export function addTwoNumbers(n1: ListNode, n2: ListNode): ListNode {
   let res: ListNode;
   let c: ListNode;
   while (s > 0) {
-    const q = Math.floor(s/10);
+    const q = Math.floor(s / 10);
     const r = s % 10;
     if (res === undefined) {
       res = new ListNode(r);
