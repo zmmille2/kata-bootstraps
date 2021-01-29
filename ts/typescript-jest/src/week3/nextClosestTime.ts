@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * Returns the next closest time using the same digits
  * provided in the input string
