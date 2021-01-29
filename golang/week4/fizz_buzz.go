@@ -7,7 +7,7 @@ import (
 )
 
 func Greet(name string) string {
-	return "Goodbye " + name
+	return "Hello " + name
 }
 
 func FizzBuzz(num int) (string, error) {
