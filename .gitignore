@@ -8,6 +8,7 @@
 *.iml
 target/
 /js/**/node_modules
+/**/node_modules
 csharp/dotnet/Kata/.vs
 csharp/dotnet/Kata/packages
 csharp/dotnet/Kata/**/bin
