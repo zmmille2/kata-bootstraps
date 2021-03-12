@@ -1,6 +1,7 @@
-# Git Kata
+# Git Kata - Part 1
 
 This set of katas will focus on using skills within Git that we use frequently.
+There are many exercises we could do with `git`, and this set is just a few of them.
 
 ## Challenge 1 - Pull a branch from another remote repository
 
