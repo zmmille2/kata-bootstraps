@@ -28,7 +28,7 @@ $ git lp
 
 ## Challenge 3 - Interactive Rebase
 
-[Interactive rebases]() are very useful in re-writing history on your local branch.
+[Interactive rebases](https://git-scm.com/docs/git-rebase) are very useful in re-writing history on your local branch.
 It should be done with care (if at all) on any shared branches.
 On your local branch, use an interactive rebase to re-arrange your git history.
 By the time you're done, you should be able to run `git lp` (from challenge above) and get an output that looks something like
@@ -41,5 +41,3 @@ By the time you're done, you should be able to run `git lp` (from challenge abov
 
 If you want to push this branch to your remote repo (assuming it exists in the remote), you'll have to force push.
 Again, this should almost never happen on a shared branch, and if it does, the team should be aware and probably do it together.
-
-
